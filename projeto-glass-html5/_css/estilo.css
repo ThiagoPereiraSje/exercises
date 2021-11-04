@@ -41,6 +41,11 @@ figure.foto-legenda:hover figcaption {
 nav#menu {
   display: block;
 }
+
+nav#menu h1 {
+  display: none;
+}
+
 nav#menu ul {
   list-style: none;
   text-transform: uppercase;
@@ -49,13 +54,26 @@ nav#menu ul {
   left: 300px;
 }
 
-nav#menu h1 {
-  display: none;
-}
-
 nav#menu li {
   display: inline-block;
   background-color: #ddd;
   padding: 10px;
   margin: 2px;
+
+  /* Lembrar do Prefixr para gerar css compatível*/
+  transition: background-color 1s;
+}
+
+nav#menu li:hover {
+  background-color: #606060;
+}
+
+nav#menu a {
+  color: black;
+  text-decoration: none;
+}
+
+nav#menu a:hover {
+  color: white;
+  text-decoration: underline;
 }
