@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu primeiro programa</title>
+</head>
+<body>
+    Olá, mundo! <br>
+    <script>
+        let n1 = Number.parseFloat(window.prompt("Digite um número:"));
+        let n2 = Number.parseFloat(window.prompt("Digite outro número:"));
+        let s = n1 + n2;
+        
+        // Número para string String(n) ou n.toString()
+
+        window.alert("A soma é "+ s + "!");
+        document.writeln(s.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}), '<br>');
+        document.writeln(s.toLocaleString('pt-BR', {style: 'currency', currency: 'USD'}), '<br>');
+        document.writeln(s.toLocaleString('pt-BR', {style: 'currency', currency: 'EUR'}), '<br>');
+    </script>
+</body>
+</html>
