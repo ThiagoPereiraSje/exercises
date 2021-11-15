@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavras Primas</title>
+    <script>
+        const letras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const map = new Map();
+
+        for (let i = 0; i < letras.length; i++) {
+            map.set(letras[i], i+1);
+        }
+
+        function ePrimo(n) {
+            let divisores = 0;
+
+            for (let i = n; i > 0; i--) {
+                if (n % i === 0) {
+                    divisores++;
+                }
+            }
+
+            return (divisores === 2);
+        }
+
+        function somaPalavra(palavra) {
+            let array = palavra.split("");
+            let soma = 0;
+
+            for (let i = 0; i < array.length; i++) {
+                soma += map.get(array[i]);
+            }
+            
+            return soma;
+        }
+
+        function primaPalavra(palavra) {
+            let soma = somaPalavra(palavra);
+            return ePrimo(soma);
+        }
+    </script>
+</head>
+<body>
+      
+    <script>
+        let palavra = "";
+        let resultados = [];
+
+        while (palavra.toLowerCase() !== "eof") {
+            palavra = prompt("Digite uma palavra com até 20 caracteres: (Ou EOF para finalizar)").substring(0, 20);
+
+            if (palavra.toLowerCase() !== "eof") {
+                resultados.push(`<br> A palavra ${palavra}: ${primaPalavra(palavra) ? '<b>é Prima</b>': '<b>não é Prima</b>'}`);
+            }
+        }
+
+        for (let i = 0; i < resultados.length; i++) {
+            document.write(resultados[i]);
+        }
+    </script>
+</body>
+</html>
