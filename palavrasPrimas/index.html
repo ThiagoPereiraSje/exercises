@@ -17,13 +17,13 @@
         function ePrimo(n) {
             let divisores = 0;
 
-            for (let i = n; i >= (n / 2); i--) {
+            for (let i = n; i > 0; i--) {
                 if (n % i == 0) {
                     divisores++;
                 }
             }
 
-            return (divisores == 1);
+            return (divisores == 2);
         }
 
         function somaPalavra(palavra) {
@@ -40,27 +40,31 @@
             let soma = somaPalavra(palavra);
             return ePrimo(soma);
         }
+
+        function verificar() {
+            let palavra = document.getElementById('tfPalavra').value;
+            let p = document.createElement('p');
+            let conteudo = `A palavra ${palavra}: ${primaPalavra(palavra) ?
+                'é Prima.' :
+                'não é Prima.'}`;
+
+            p.append(conteudo);
+
+            document.getElementById('resultado').appendChild(p);
+        }
     </script>
 </head>
 
 <body>
+    <h1>Palavras Primas</h1>
+    <label for="tfPalavra">Palavra:</label>
+    <input id="tfPalavra" placeholder="Digite uma palavra" type="text">
 
-    <script>
-        let palavra = "";
-        let resultados = [];
+    <button onclick="verificar()">
+        Verificar Palavra
+    </button>
 
-        while (palavra.toLowerCase() !== "eof") {
-            palavra = prompt("Digite uma palavra com até 20 caracteres: (Ou EOF para finalizar)").substring(0, 20);
-
-            if (palavra.toLowerCase() !== "eof") {
-                resultados.push(`<br> A palavra ${palavra}: ${primaPalavra(palavra) ? '<b>é Prima</b>' : '<b>não é Prima</b>'}`);
-            }
-        }
-
-        for (let i = 0; i < resultados.length; i++) {
-            document.write(resultados[i]);
-        }
-    </script>
+    <div id="resultado"></div>
 </body>
 
 </html>
