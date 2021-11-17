@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,32 +9,33 @@
     <script>
         function calcFatorial() {
             let valor = Number(document.getElementById('tfNumero').value);
+
+            if (valor < 0) {
+                document.getElementById('resultado').innerHTML = `<p>Não existe fatorial de número negativo!</p>`;
+                return;
+            }
+
             let fat = 1;
 
             for (let i = valor; i > 0; i--) {
                 fat *= i;
             }
 
-            if (valor < 0) {
-                document.getElementById('resultado').innerHTML = `<p>Não Existe!</p>`;    
-            } else {
-                document.getElementById('resultado').innerHTML = `<p>O Resultado é: ${fat}</p>`;
-            }
+            document.getElementById('resultado').innerHTML = `<p>O Resultado é: ${fat}</p>`;
         }
     </script>
 </head>
+
 <body>
     <h1>Fatorial de um número</h1>
     <label for="tfNumero">Valor:</label>
-    <input 
-        id="tfNumero"
-        placeholder="Informe o número" 
-        type="number">
-    
+    <input id="tfNumero" min="0" placeholder="Informe o número" type="number">
+
     <button onclick="calcFatorial()">
         Calcular
     </button>
 
     <div id="resultado"></div>
 </body>
+
 </html>
