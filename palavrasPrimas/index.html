@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,29 +11,28 @@
         const map = new Map();
 
         for (let i = 0; i < letras.length; i++) {
-            map.set(letras[i], i+1);
+            map.set(letras[i], i + 1);
         }
 
         function ePrimo(n) {
             let divisores = 0;
 
-            for (let i = n; i > 0; i--) {
-                if (n % i === 0) {
+            for (let i = n; i >= (n / 2); i--) {
+                if (n % i == 0) {
                     divisores++;
                 }
             }
 
-            return (divisores === 2);
+            return (divisores == 1);
         }
 
         function somaPalavra(palavra) {
-            let array = palavra.split("");
             let soma = 0;
 
-            for (let i = 0; i < array.length; i++) {
-                soma += map.get(array[i]);
+            for (let i = 0; i < palavra.length; i++) {
+                soma += map.get(palavra[i]);
             }
-            
+
             return soma;
         }
 
@@ -42,8 +42,9 @@
         }
     </script>
 </head>
+
 <body>
-      
+
     <script>
         let palavra = "";
         let resultados = [];
@@ -52,7 +53,7 @@
             palavra = prompt("Digite uma palavra com até 20 caracteres: (Ou EOF para finalizar)").substring(0, 20);
 
             if (palavra.toLowerCase() !== "eof") {
-                resultados.push(`<br> A palavra ${palavra}: ${primaPalavra(palavra) ? '<b>é Prima</b>': '<b>não é Prima</b>'}`);
+                resultados.push(`<br> A palavra ${palavra}: ${primaPalavra(palavra) ? '<b>é Prima</b>' : '<b>não é Prima</b>'}`);
             }
         }
 
@@ -61,4 +62,5 @@
         }
     </script>
 </body>
+
 </html>
