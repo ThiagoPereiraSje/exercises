@@ -7,64 +7,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palavras Primas</title>
     <script>
-        const letras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const map = new Map();
 
-        for (let i = 0; i < letras.length; i++) {
-            map.set(letras[i], i + 1);
+        for (let i = 0; i < letters.length; i++) {
+            map.set(letters[i], i + 1);
         }
 
-        function ePrimo(n) {
-            let divisores = 0;
+        function isPrime(n) {
+            let dividers = 0;
 
-            for (let i = n; i > 0; i--) {
+            for (let i = n; i >= (n / 2); i--) {
                 if (n % i == 0) {
-                    divisores++;
+                    dividers++;
                 }
             }
 
-            return (divisores == 2);
+            return (dividers == 1);
         }
 
-        function somaPalavra(palavra) {
-            let soma = 0;
+        function sumLetters(word) {
+            let sum = 0;
 
-            for (let i = 0; i < palavra.length; i++) {
-                soma += map.get(palavra[i]);
+            for (let i = 0; i < word.length; i++) {
+                sum += map.get(word[i]);
             }
 
-            return soma;
+            return sum;
         }
 
-        function primaPalavra(palavra) {
-            let soma = somaPalavra(palavra);
-            return ePrimo(soma);
+        function wordIsPrime(word) {
+            let sum = sumLetters(word);
+            return isPrime(sum);
         }
 
-        function verificar() {
-            let palavra = document.getElementById('tfPalavra').value;
+        function checkWord() {
+            let word = document.getElementById('tfWord').value;
             let p = document.createElement('p');
-            let conteudo = `A palavra ${palavra}: ${primaPalavra(palavra) ?
+            let content = `A palavra "${word}": ${wordIsPrime(word) ?
                 'é Prima.' :
                 'não é Prima.'}`;
 
-            p.append(conteudo);
+            p.append(content);
 
-            document.getElementById('resultado').appendChild(p);
+            document.getElementById('result').appendChild(p);
         }
     </script>
 </head>
 
 <body>
     <h1>Palavras Primas</h1>
-    <label for="tfPalavra">Palavra:</label>
-    <input id="tfPalavra" placeholder="Digite uma palavra" type="text">
+    <label for="tfWord">Palavra:</label>
+    <input id="tfWord" placeholder="Digite uma palavra" type="text">
 
-    <button onclick="verificar()">
+    <button onclick="checkWord()">
         Verificar Palavra
     </button>
 
-    <div id="resultado"></div>
+    <div id="result"></div>
 </body>
 
 </html>
