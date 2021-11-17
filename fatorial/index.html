@@ -8,47 +8,47 @@
     <link rel="stylesheet" href="style.css">
     <title>Fatorial</title>
     <script>
-        function validaNumero(element) {
+        function validateNumber(element) {
             value = Number(element.value);
 
             if (value < 0) {
                 element.classList.add('danger');
-                document.getElementById('btCalcular').disabled = true;
+                document.getElementById('btCalculate').disabled = true;
             } else {
                 element.classList.remove('danger');
-                document.getElementById('btCalcular').disabled = false;
+                document.getElementById('btCalculate').disabled = false;
             }
         }
 
-        function calcFatorial() {
-            let valor = Number(document.getElementById('tfNumero').value);
+        function calcFactorial() {
+            let value = Number(document.getElementById('tfNumber').value);
 
-            if (valor < 0) {
-                document.getElementById('resultado').innerHTML = `<p>Não existe fatorial de número negativo!</p>`;
+            if (value < 0) {
+                document.getElementById('result').innerHTML = `<p>Não existe fatorial de número negativo!</p>`;
                 return;
             }
 
             let fat = 1;
 
-            for (let i = valor; i > 0; i--) {
+            for (let i = value; i > 0; i--) {
                 fat *= i;
             }
 
-            document.getElementById('resultado').innerHTML = `<p>O Resultado é: ${fat}</p>`;
+            document.getElementById('result').innerHTML = `<p>O Resultado é: ${fat}</p>`;
         }
     </script>
 </head>
 
 <body>
     <h1>Fatorial de um número</h1>
-    <label for="tfNumero">Valor:</label>
-    <input id="tfNumero" min="0" placeholder="Informe o número" type="number" onchange="validaNumero(this)">
+    <label for="tfNumber">Valor:</label>
+    <input id="tfNumber" min="0" placeholder="Informe o número" type="number" onchange="validateNumber(this)">
 
-    <button id="btCalcular" onclick="calcFatorial()">
+    <button id="btCalculate" onclick="calcFactorial()">
         Calcular
     </button>
 
-    <div id="resultado"></div>
+    <div id="result"></div>
 </body>
 
 </html>
