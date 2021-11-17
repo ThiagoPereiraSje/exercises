@@ -1,0 +1,5 @@
+.danger {
+    border: 2px solid red;
+    background-color: rgb(223, 155, 155);
+    outline: none;
+}

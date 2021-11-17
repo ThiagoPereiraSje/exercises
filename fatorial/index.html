@@ -5,8 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Fatorial</title>
     <script>
+        function validaNumero(element) {
+            value = Number(element.value);
+
+            if (value < 0) {
+                element.classList.add('danger');
+                document.getElementById('btCalcular').disabled = true;
+            } else {
+                element.classList.remove('danger');
+                document.getElementById('btCalcular').disabled = false;
+            }
+        }
+
         function calcFatorial() {
             let valor = Number(document.getElementById('tfNumero').value);
 
@@ -29,9 +42,9 @@
 <body>
     <h1>Fatorial de um número</h1>
     <label for="tfNumero">Valor:</label>
-    <input id="tfNumero" min="0" placeholder="Informe o número" type="number">
+    <input id="tfNumero" min="0" placeholder="Informe o número" type="number" onchange="validaNumero(this)">
 
-    <button onclick="calcFatorial()">
+    <button id="btCalcular" onclick="calcFatorial()">
         Calcular
     </button>
 
