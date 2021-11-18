@@ -6,11 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Par ou Ímpar</title>
-    <style>
-        h4 {
-            margin-bottom: 0px;
+    <link rel="stylesheet" href="style.css">
+    <script>
+        //const regex = new RegExp("\d{1,}");
+
+        function validateNumbers(element) {
+            if (!/[A-Za-z]/.test(element.value)) {
+                element.classList.remove('danger');
+                document.getElementById('btPlay').disabled = false;
+                document.getElementById('warnings').innerText = '';
+                return;
+            }
+
+            element.classList.add('danger');
+            document.getElementById('btPlay').disabled = true;
+            document.getElementById('warnings').innerText = 'Valores inválidos!';
         }
-    </style>
+    </script>
 </head>
 
 <body>
@@ -19,19 +31,18 @@
     <p>
     <h4>Jogador 1 (Par)</h4>
     <label for="tfPlayer1">Números: </label>
-    <input type="text" id="tfPlayer1" placeholder="Ex.: 1, 2, 3 ...">
-    <span id="p1Warnings"></span>
+    <input type="text" id="tfPlayer1" placeholder="Ex.: 1, 2, 3 ..." onchange="validateNumbers(this)">
     </p>
 
     <p>
     <h4>Jogador 2 (Ímpar)</h4>
     <label for="tfPlayer2">Números:</label>
-    <input type="text" id="tfPlayer2" placeholder="Ex.: 1, 2, 3 ...">
-    <span id="p2Warnings"></span>
+    <input type="text" id="tfPlayer2" placeholder="Ex.: 1, 2, 3 ..." onchange="validateNumbers(this)">
     </p>
 
     <p>
         <button id="btPlay">Jogar</button>
+        <span id="warnings"></span>
     </p>
 
     <div id="result"></div>
