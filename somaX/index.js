@@ -13,8 +13,6 @@
 //      if (i+j == x)
 //          array.push([i, j])
 
-
-
 function verificaValores(x, lista1, lista2) {
   let array = [];
 
@@ -49,6 +47,28 @@ function verificaV2(x, lista1, lista2) {
   return array;
 }
 
+function verificaV3(x, lista1, lista2) {
+  let array = [];
+  let map = {};
+
+  // transforma a lista em um dicionário
+  for (let i = 0; i < lista2.length; i++) {
+    map[lista2[i]] = true;
+  }
+
+  for (let i = 0; i < lista1.length; i++) {
+    let comp = x - lista1[i];
+
+    if (map[comp]) {
+      if (!array.some((e) => e.includes(lista1[i], comp))) {
+        array.push([lista1[i], comp]);
+      }
+    }
+  }
+
+  return array;
+}
+
 //{ chave: '', 0}
 
 // a + b = x
@@ -58,6 +78,10 @@ function verificaV2(x, lista1, lista2) {
 // console.log(verificaValores(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]));
 // console.log(verificaValores(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]).length);
 
-console.log(verificaV2(5, [1, 2, 3], [2, 4]));
-console.log(verificaV2(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]));
-console.log(verificaV2(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]).length);
+// console.log(verificaV2(5, [1, 2, 3], [2, 4]));
+// console.log(verificaV2(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]));
+// console.log(verificaV2(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]).length);
+
+console.log(verificaV3(5, [1, 2, 3], [2, 4]));
+console.log(verificaV3(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]));
+console.log(verificaV3(2, [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]).length);
