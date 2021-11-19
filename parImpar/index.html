@@ -7,72 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Par ou Ímpar</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        function validateNumbers(element) {
-            if (!/[A-Za-z.]/.test(element.value)) {
-                element.classList.remove('danger');
-                document.getElementById('btPlay').disabled = false;
-                document.getElementById('warnings').innerText = '';
-                return;
-            }
-
-            element.classList.add('danger');
-            document.getElementById('btPlay').disabled = true;
-            document.getElementById('warnings').innerText = 'Valores inválidos!';
-        }
-
-        function findWinner(smallList, bigList) {
-            let i = 0;
-            let even = 0;
-            let odd = 0;
-
-            for (i; i < smallList.length; i++) {
-                let value = Number(smallList[i]) + Number(bigList[i]);
-
-                ((value % 2) == 0) ?
-                    even++ :
-                    odd++;
-            }
-
-            for (i; i < bigList.length; i++) {
-                let value = Number(bigList[i]);
-
-                ((value % 2) == 0) ?
-                    even++ :
-                    odd++;
-            }
-
-            if (even > odd) {
-                // Jogador 1 é o vencedor
-                return;
-            }
-
-            if (odd > even) {
-                // Jogador 2 é o vencedor
-                return;
-            }
-
-            // Deu empate
-            // console.log('par:', even);
-            // console.log('impar:', odd);
-        }
-
-        function play() {
-            const reg = /\D{1,}/;
-            let p1Numbers = document.getElementById('tfPlayer1').value.split(reg);
-            let p2Numbers = document.getElementById('tfPlayer2').value.split(reg);
-
-            console.log('p1Numbers: ', p1Numbers.length);
-            console.log('p2Numbers: ', p2Numbers.length);
-
-            if (p1Numbers.length > p2Numbers.length) {
-                findWinner(p2Numbers, p1Numbers);
-                return;
-            }
-
-            findWinner(p1Numbers, p2Numbers);
-        }
-    </script>
+    <script src="./index.js"></script>
 </head>
 
 <body>
