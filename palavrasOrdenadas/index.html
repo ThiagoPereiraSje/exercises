@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavras Ordenadas</title>
+    <script>
+        function wordIsOrdered(word) {
+            let letters = Array.from(word);
+            let ordered = letters.sort().join('');
+
+            return (word === ordered);
+        }
+
+        function checkWord() {
+            let word = document.getElementById('tfWord').value;
+            let p = document.createElement('p');
+            let content = `A palavra "${word}": ${wordIsOrdered(word) ?
+                'é Ordenada. (O)' :
+                'não é Ordenada. (N)'}`;
+
+            p.append(content);
+
+            document.getElementById('result').appendChild(p);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Palavras Ordenada</h1>
+    <label for="tfWord">Palavra:</label>
+    <input id="tfWord" placeholder="Digite uma palavra" type="text">
+
+    <button onclick="checkWord()">
+        Verificar Palavra
+    </button>
+
+    <div id="result"></div>
+</body>
+
+</html>
