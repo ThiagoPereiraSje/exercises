@@ -7,23 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palavras Ordenadas</title>
     <script>
-        function wordIsOrdered(word) {
-            let letters = Array.from(word);
-            let ordered = letters.sort().join('');
+        function isWordOrdered(word) {
+            const minusculas = word.toLowerCase();
 
-            return (word === ordered);
+            for (let i = 1; i < minusculas.length; i++) {
+                let primeira = minusculas[i - 1];
+                let segunda = minusculas[i];
+
+                if ((primeira >= segunda)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         function checkWord() {
-            let word = document.getElementById('tfWord').value;
-            let p = document.createElement('p');
-            let content = `A palavra "${word}": ${wordIsOrdered(word) ?
-                'é Ordenada. (O)' :
-                'não é Ordenada. (N)'}`;
+            const word = document.getElementById('tfWord').value;
+            const paragrafo = document.createElement('p');
+            const result = isWordOrdered(word) ? 'é Ordenada. (O)' : 'não é Ordenada. (N)';
+            const content = `A palavra "${word}": ${result}`;
 
-            p.append(content);
+            paragrafo.append(content);
 
-            document.getElementById('result').appendChild(p);
+            document.getElementById('result').appendChild(paragrafo);
         }
     </script>
 </head>
