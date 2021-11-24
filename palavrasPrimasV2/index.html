@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavras Primas V2</title>
+    <script>
+        function isPrime(n) {
+            let dividers = 0;
+
+            for (let i = n; i >= (n / 2); i--) {
+                if (n % i == 0) {
+                    dividers++;
+                }
+            }
+
+            return (dividers == 1);
+        }
+
+        function convertASCIICode(code) {
+            if (code >= 65 && code <= 90) {
+                return (code - 38);
+            }
+
+            if (code >= 97 && code <= 122) {
+                return (code - 96);
+            }
+        }
+
+        function sumLetters(word) {
+            let sum = 0;
+
+            for (let i = 0; i < word.length; i++) {
+                sum += convertASCIICode(word.charCodeAt(i));
+            }
+
+            return sum;
+        }
+
+        function wordIsPrime(word) {
+            let sum = sumLetters(word);
+            return isPrime(sum);
+        }
+
+        function checkWord() {
+            let word = document.getElementById('tfWord').value;
+            let p = document.createElement('p');
+            let content = `A palavra "${word}": ${wordIsPrime(word) ?
+                'é Prima.' :
+                'não é Prima.'}`;
+
+            p.append(content);
+
+            document.getElementById('result').appendChild(p);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Palavras Primas</h1>
+    <label for="tfWord">Palavra:</label>
+    <input id="tfWord" placeholder="Digite uma palavra" type="text">
+
+    <button onclick="checkWord()">
+        Verificar Palavra
+    </button>
+
+    <div id="result"></div>
+</body>
+
+</html>
