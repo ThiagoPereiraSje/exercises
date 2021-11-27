@@ -22,10 +22,24 @@
             return true;
         }
 
+        function isWordOrdered2(word) {
+            const lower = word.toLowerCase();
+            const regex = /(\D)\1+/;
+
+            if (regex.test(lower)) {
+                return false;
+            }
+
+            const array = Array.from(lower);
+            const ordered = array.sort().join("");
+
+            return (lower === ordered);
+        }
+
         function checkWord() {
             const word = document.getElementById('tfWord').value;
             const paragrafo = document.createElement('p');
-            const result = isWordOrdered(word) ? 'é Ordenada. (O)' : 'não é Ordenada. (N)';
+            const result = isWordOrdered2(word) ? 'é Ordenada. (O)' : 'não é Ordenada. (N)';
             const content = `A palavra "${word}": ${result}`;
 
             paragrafo.append(content);
