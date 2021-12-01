@@ -31,6 +31,9 @@
             }
 
             const array = Array.from(lower);
+
+            // Evite soluções que utilizem a ordenação.
+            // Ordenações tem um maior custo computacional.
             const ordered = array.sort().join("");
 
             return (lower === ordered);
