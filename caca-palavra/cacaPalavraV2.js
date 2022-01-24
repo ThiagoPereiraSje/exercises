@@ -6,6 +6,11 @@
 // LAELA BAIXO CIMA
 // [4, 4]
 
+// AITUA DIAGONAL SUBINDO ESQUERDA DIREITA
+// [4, 0]
+// AAUE
+// [3, 9]
+
 const grid = [
   ["A", "B", "A", "C", "A", "T", "E", "A", "Z", "U", "L", "P", "E"], // 0
   ["P", "P", "L", "U", "L", "A", "O", "W", "Q", "A", "Z", "U", "S"], // 1
@@ -15,7 +20,7 @@ const grid = [
   ["Z", "D", "K", "S", "Z", "S", "A", "O", "D", "A", "K", "D", "D"], // 5
   ["U", "O", "T", "S", "L", "U", "A", "O", "L", "U", "Z", "A", "P"], // 6
   ["L", "O", "T", "T", "T", "R", "Z", "L", "P", "S", "K", "D", "D"], // 7
-]; //0   1    2    3    4    5    6    7    8   9     10   11  12
+]; //0   1    2    3    4    5    6    7    8    9     10   11  12
 
 const ocorrencias = [];
 
@@ -61,6 +66,21 @@ function verificaBaixoCima(palavra, matriz, i, j) {
   ocorrencias.push([i, j]);
 }
 
+function diagonalSubindoEsquerdaDireita(palavra, matriz, i, j) {
+  for (let h = 1; h < palavra.length; h++) {
+    const tamanhoLinha = matriz[i].length;
+    if (
+      i - h < 0 ||
+      j + h >= tamanhoLinha ||
+      palavra[h] != matriz[i - h][j + h]
+    ) {
+      return;
+    }
+  }
+
+  ocorrencias.push([i, j]);
+}
+
 function verificaOcorrencias(palavra, matriz) {
   for (let i = 0; i < matriz.length; i++) {
     for (let j = 0; j < matriz[i].length; j++) {
@@ -69,6 +89,7 @@ function verificaOcorrencias(palavra, matriz) {
         verificaDireitaEsquerda(palavra, matriz, i, j);
         verificaCimaBaixo(palavra, matriz, i, j);
         verificaBaixoCima(palavra, matriz, i, j);
+        diagonalSubindoEsquerdaDireita(palavra, matriz, i, j);
       }
     }
   }
@@ -76,4 +97,6 @@ function verificaOcorrencias(palavra, matriz) {
 
 verificaOcorrencias("AZUL", grid);
 verificaOcorrencias("LAELA", grid);
+verificaOcorrencias("AITUA", grid);
+verificaOcorrencias("AAUE", grid);
 console.log("ocorrencias: ", ocorrencias);
