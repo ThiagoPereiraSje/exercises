@@ -3,6 +3,9 @@
 // [4, 0]
 // [6, 11]
 
+// LAELA BAIXO CIMA
+// [4, 4]
+
 const grid = [
   ["A", "B", "A", "C", "A", "T", "E", "A", "Z", "U", "L", "P", "E"], // 0
   ["P", "P", "L", "U", "L", "A", "O", "W", "Q", "A", "Z", "U", "S"], // 1
@@ -48,6 +51,16 @@ function verificaCimaBaixo(palavra, matriz, i, j) {
   ocorrencias.push([i, j]);
 }
 
+function verificaBaixoCima(palavra, matriz, i, j) {
+  for (let h = 1; h < palavra.length; h++) {
+    if (i - h < 0 || palavra[h] != matriz[i - h][j]) {
+      return;
+    }
+  }
+
+  ocorrencias.push([i, j]);
+}
+
 function verificaOcorrencias(palavra, matriz) {
   for (let i = 0; i < matriz.length; i++) {
     for (let j = 0; j < matriz[i].length; j++) {
@@ -55,10 +68,12 @@ function verificaOcorrencias(palavra, matriz) {
         verificaEsquerdaDireita(palavra, matriz, i, j);
         verificaDireitaEsquerda(palavra, matriz, i, j);
         verificaCimaBaixo(palavra, matriz, i, j);
+        verificaBaixoCima(palavra, matriz, i, j);
       }
     }
   }
 }
 
 verificaOcorrencias("AZUL", grid);
+verificaOcorrencias("LAELA", grid);
 console.log("ocorrencias: ", ocorrencias);
