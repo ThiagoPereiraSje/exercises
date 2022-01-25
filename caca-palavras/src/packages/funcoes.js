@@ -1,22 +1,26 @@
-function verificaEsquerdaDireita(palavra, matriz, i, j, ocorr) {
-  for (let h = 1; h < palavra.length; h++) {
+function verificaEsquerdaDireita(palavra, matriz, i, j) {
+  const ocorr = [];
+
+  for (let h = 0; h < palavra.length; h++) {
     const tamanhoLinha = matriz[i].length;
 
     if (j + h >= tamanhoLinha || palavra[h] !== matriz[i][j + h]) {
-      return;
+      return [];
     }
 
-    ocorr.push([i, j]);
+    ocorr.push([i, j + h]);
   }
+
+  return ocorr;
 }
 
 export default function verificaOcorrencias(palavra, grade) {
-  const ocorr = [];
+  let ocorr = [];
 
   for (let i = 0; i < grade.length; i++) {
     for (let j = 0; j < grade[i].length; j++) {
       if (palavra[0] === grade[i][j]) {
-        verificaEsquerdaDireita(palavra, grade, i, j, ocorr);
+        ocorr = ocorr.concat(verificaEsquerdaDireita(palavra, grade, i, j));
       }
     }
   }

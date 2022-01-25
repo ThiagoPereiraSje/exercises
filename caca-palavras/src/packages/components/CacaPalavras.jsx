@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useState } from "react";
+import verificaOcorrencias from "../funcoes";
 
 const grade = [
   ["A", "B", "A", "C", "A", "T", "E", "A", "Z", "U", "L", "P", "E"], // 0
@@ -23,7 +24,7 @@ function Coluna({ col, i = 0, j = 0, ocorr = [] }) {
   const pos = [i, j].join(",");
 
   const colStyle = ocorr.find((el) => el.join(",") === pos)
-    ? { ...style, backgroundColor: "#ff6666" }
+    ? { ...style, backgroundColor: "#ff5555" }
     : style;
 
   return <div style={colStyle}>{col}</div>;
@@ -40,15 +41,24 @@ function Linha({ li, i = 0, ocorr = [] }) {
 }
 
 export default function CacaPalavras() {
-  const ocorr = useRef([
-    [0, 0],
-    [0, 1],
-  ]);
+  const [ocorr, setOcorr] = useState([]);
 
   return (
     <div>
+      <input
+        style={{ marginBottom: 10 }}
+        onChange={(e) => {
+          const _ocorr = verificaOcorrencias(
+            e.target.value.toLocaleUpperCase(),
+            grade
+          );
+
+          setOcorr(_ocorr);
+        }}
+      />
+
       {grade.map((li, i) => (
-        <Linha key={i} li={li} i={i} ocorr={ocorr.current} />
+        <Linha key={i} li={li} i={i} ocorr={ocorr} />
       ))}
     </div>
   );
