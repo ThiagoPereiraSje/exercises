@@ -27,7 +27,7 @@ const ocorrencias = [];
 function verificaEsquerdaDireita(palavra, matriz, i, j) {
   for (let h = 1; h < palavra.length; h++) {
     const tamanhoLinha = matriz[i].length;
-    if (j + h >= tamanhoLinha || palavra[h] != matriz[i][j + h]) {
+    if (j + h >= tamanhoLinha || palavra[h] !== matriz[i][j + h]) {
       return;
     }
   }
@@ -37,7 +37,7 @@ function verificaEsquerdaDireita(palavra, matriz, i, j) {
 
 function verificaDireitaEsquerda(palavra, matriz, i, j) {
   for (let h = 1; h < palavra.length; h++) {
-    if (j - h < 0 || palavra[h] != matriz[i][j - h]) {
+    if (j - h < 0 || palavra[h] !== matriz[i][j - h]) {
       return;
     }
   }
@@ -48,7 +48,7 @@ function verificaDireitaEsquerda(palavra, matriz, i, j) {
 function verificaCimaBaixo(palavra, matriz, i, j) {
   for (let h = 1; h < palavra.length; h++) {
     const tamanhoColuna = matriz.length;
-    if (i + h >= tamanhoColuna || palavra[h] != matriz[i + h][j]) {
+    if (i + h >= tamanhoColuna || palavra[h] !== matriz[i + h][j]) {
       return;
     }
   }
@@ -58,7 +58,7 @@ function verificaCimaBaixo(palavra, matriz, i, j) {
 
 function verificaBaixoCima(palavra, matriz, i, j) {
   for (let h = 1; h < palavra.length; h++) {
-    if (i - h < 0 || palavra[h] != matriz[i - h][j]) {
+    if (i - h < 0 || palavra[h] !== matriz[i - h][j]) {
       return;
     }
   }
@@ -72,7 +72,7 @@ function diagonalSubindoEsquerdaDireita(palavra, matriz, i, j) {
     if (
       i - h < 0 ||
       j + h >= tamanhoLinha ||
-      palavra[h] != matriz[i - h][j + h]
+      palavra[h] !== matriz[i - h][j + h]
     ) {
       return;
     }
@@ -84,7 +84,7 @@ function diagonalSubindoEsquerdaDireita(palavra, matriz, i, j) {
 function verificaOcorrencias(palavra, matriz) {
   for (let i = 0; i < matriz.length; i++) {
     for (let j = 0; j < matriz[i].length; j++) {
-      if (palavra[0] == matriz[i][j]) {
+      if (palavra[0] === matriz[i][j]) {
         verificaEsquerdaDireita(palavra, matriz, i, j);
         verificaDireitaEsquerda(palavra, matriz, i, j);
         verificaCimaBaixo(palavra, matriz, i, j);
