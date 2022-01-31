@@ -2,7 +2,7 @@ import { Box, BoxProps, Icon, IconProps, Stack, Text } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { FaCheck } from "react-icons/fa";
 
-interface CommonProps {
+export interface StepItem {
   title: string;
   icon: IconType;
   checkedIcon?: IconType;
@@ -15,7 +15,7 @@ interface CommonProps {
   checkedLineStyle?: BoxProps;
 }
 
-interface StepProps extends CommonProps {
+interface StepProps extends StepItem {
   checked: boolean;
 }
 
@@ -73,16 +73,14 @@ function Step({
   );
 }
 
-export interface StepItem extends CommonProps {}
-
 interface Props {
   header: StepItem[];
   curStep: number;
 }
 
-export default function StepsHeader({ header, curStep }: Props) {
+export default function StepsIndicator({ header, curStep }: Props) {
   return (
-    <Stack direction={{ sm: "column", md: "row" }}>
+    <Stack direction="row">
       {header.map((s, i) => (
         <Step key={i} {...s} checked={curStep > i} />
       ))}

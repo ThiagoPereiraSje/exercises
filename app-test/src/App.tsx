@@ -6,7 +6,7 @@ import BuyerContact from "./packages/components/BuyerContact";
 import BuyerDelivery from "./packages/components/BuyerDelivery";
 import BuyerOrder from "./packages/components/BuyerOrder";
 import useSteps from "./packages/hooks/useSteps";
-import StepsHeader, { StepItem } from "./packages/components/StepsHeader";
+import StepsIndicator, { StepItem } from "./packages/components/StepsIndicator";
 
 const steps = [BuyerContact, BuyerAddress, BuyerDelivery, BuyerOrder];
 
@@ -23,8 +23,8 @@ function App() {
   return (
     <Box>
       <Box>
-        <Stack direction={{ sm: "row", md: "column" }}>
-          <StepsHeader header={stepsHeader} curStep={step} />
+        <Stack direction="column">
+          <StepsIndicator header={stepsHeader} curStep={step} />
           {createElement(steps[step], {
             onPrev: prevStep,
             onNext: nextStep,
