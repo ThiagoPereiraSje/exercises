@@ -1,3 +1,3 @@
-# exercises
+# Exercícios
 
-Nesse repositório serão armazenados os exercícios da Mentoria Trilha.
+Repositório para armazenar os exercícios da Mentoria Trilha.
