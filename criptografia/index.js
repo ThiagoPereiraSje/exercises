@@ -1,7 +1,10 @@
 /*
 Rotacionar
 palavra: Ydprv = vamos
+
+A = 😀, M = 🤪, O = 🥶, R = 🤖, L = ❤, U = ⭐
 */
+console.log("😀".charCodeAt());
 
 function descriptograVinegere(text, rotation) {
   let lower = text.toLowerCase();
